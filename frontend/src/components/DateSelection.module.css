@@ -1,0 +1,122 @@
+.section {
+  margin-bottom: var(--spacing-2xl);
+  animation: fadeInUp 0.5s ease-out 0.1s both;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(var(--transform-translate-xl));
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.sectionTitle {
+  background: linear-gradient(to right, var(--secondary-color), var(--primary-color), var(--accent-teal));
+  color: var(--white);
+  padding: var(--spacing-lg) var(--spacing-xl);
+  margin: 0 0 var(--spacing-lg) 0;
+  border-radius: var(--border-radius-md) var(--border-radius-md) 0 0;
+  font-size: var(--font-size-4xl);
+  font-weight: 600;
+  letter-spacing: var(--letter-spacing-tight);
+  box-shadow: var(--shadow-section);
+  transition: box-shadow 0.3s ease;
+}
+
+.sectionTitle:hover {
+  box-shadow: var(--shadow-section-hover);
+}
+
+.dateContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(var(--grid-min-width-date), 1fr));
+  gap: var(--spacing-xl);
+  padding: var(--spacing-xl);
+}
+
+.dateField {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.label {
+  font-weight: 500;
+  color: var(--text-color);
+  font-size: var(--font-size-md);
+  transition: color 0.2s ease;
+}
+
+.dateInput {
+  padding: var(--spacing-md);
+  border: var(--border-width-thin) solid var(--accent-blue-200);
+  border-radius: var(--border-radius-md);
+  font-size: var(--font-size-lg);
+  font-family: inherit;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  background: var(--white);
+  color: var(--text-color);
+}
+
+.dateInput::placeholder {
+  color: var(--gray-400);
+}
+
+.dateInput:hover:not(:disabled) {
+  border-color: var(--gray-600);
+  box-shadow: var(--shadow-input-hover);
+}
+
+.dateInput:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 var(--border-width-medium) var(--accent-cyan-200);
+  transform: translateY(var(--transform-translate-sm));
+}
+
+.dateInput:disabled {
+  background-color: var(--gray-100);
+  cursor: not-allowed;
+  opacity: 0.5;
+  border-color: var(--gray-700);
+}
+
+.dateInput.error {
+  border-color: var(--error-red);
+  background-color: var(--error-red-light);
+}
+
+.dateInput.error:focus {
+  border-color: var(--error-red);
+  box-shadow: 0 0 0 var(--border-width-thick) var(--error-red-alpha);
+}
+
+.errorMessage {
+  color: var(--error-red);
+  font-size: var(--font-size-sm);
+  margin-top: var(--spacing-sm);
+  display: block;
+  animation: fadeIn 0.2s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(var(--transform-translate-xs));
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .dateContainer {
+    grid-template-columns: 1fr;
+  }
+}
+

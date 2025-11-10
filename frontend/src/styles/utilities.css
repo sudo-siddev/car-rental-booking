@@ -1,0 +1,73 @@
+/* Utility Classes for Reusable Styles */
+
+/* Spacing Utilities */
+.mt-1 { margin-top: var(--spacing-xs); }
+.mt-2 { margin-top: var(--spacing-sm); }
+.mt-3 { margin-top: var(--spacing-lg); }
+.mt-4 { margin-top: var(--spacing-xl); }
+.mt-5 { margin-top: var(--spacing-2xl); }
+
+.mb-1 { margin-bottom: var(--spacing-xs); }
+.mb-2 { margin-bottom: var(--spacing-sm); }
+.mb-3 { margin-bottom: var(--spacing-lg); }
+.mb-4 { margin-bottom: var(--spacing-xl); }
+.mb-5 { margin-bottom: var(--spacing-2xl); }
+
+.p-1 { padding: var(--spacing-xs); }
+.p-2 { padding: var(--spacing-sm); }
+.p-3 { padding: var(--spacing-lg); }
+.p-4 { padding: var(--spacing-xl); }
+.p-5 { padding: var(--spacing-2xl); }
+
+/* Text Utilities */
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.text-right { text-align: right; }
+
+.text-bold { font-weight: 700; }
+.text-semibold { font-weight: 600; }
+.text-medium { font-weight: 500; }
+.text-normal { font-weight: 400; }
+
+.text-primary { color: var(--primary-color); }
+.text-secondary { color: var(--text-secondary); }
+.text-error { color: var(--error-color); }
+
+/* Display Utilities */
+.flex { display: flex; }
+.flex-column { flex-direction: column; }
+.flex-center { justify-content: center; align-items: center; }
+.flex-between { justify-content: space-between; }
+.flex-wrap { flex-wrap: wrap; }
+.flex-gap-1 { gap: var(--spacing-xs); }
+.flex-gap-2 { gap: var(--spacing-sm); }
+.flex-gap-3 { gap: var(--spacing-lg); }
+
+.grid { display: grid; }
+.grid-center { place-items: center; }
+
+.hidden { display: none; }
+.visible { display: block; }
+
+/* Border Utilities */
+.border { border: var(--border-width-thin) solid var(--border-color); }
+.border-primary { border-color: var(--primary-color); }
+.border-radius { border-radius: var(--border-radius-md); }
+.border-radius-sm { border-radius: var(--border-radius-sm); }
+.border-radius-lg { border-radius: var(--border-radius-xl); }
+
+/* Background Utilities */
+.bg-white { background-color: var(--white); }
+.bg-primary { background-color: var(--primary-color); }
+.bg-secondary { background-color: var(--background-color); }
+
+/* Responsive Utilities */
+@media (max-width: 768px) {
+  .hidden-mobile { display: none; }
+  .visible-mobile { display: block; }
+}
+
+@media (min-width: 769px) {
+  .hidden-desktop { display: none; }
+  .visible-desktop { display: block; }
+}

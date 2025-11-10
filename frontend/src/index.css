@@ -1,0 +1,245 @@
+/* Import utility classes - must be at the top */
+@import './styles/utilities.css';
+
+/* CSS Reset */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* PR Review Fix: Use CSS variables instead of hardcoded values */
+:root {
+  /* Colors */
+  --primary-color: #06b6d4;
+  --secondary-color: #2563eb;
+  --accent-teal: #2dd4bf;
+  --accent-cyan-600: #0891b2;
+  --accent-blue-700: #1d4ed8;
+  --accent-cyan-300: #67e8f9;
+  --accent-blue-200: #bfdbfe;
+  --accent-cyan-200: #a5f3fc;
+  --accent-blue-900: #1e3a8a;
+  --text-color: #333;
+  --text-secondary: #666;
+  --border-color: #bfdbfe;
+  --background-color: #eff6ff;
+  --background-cyan: #ecfeff;
+  --white: #ffffff;
+  --gray-100: #f8f8f8;
+  --gray-200: #f0f0f0;
+  --gray-300: #d1d5db;
+  --gray-400: #9ca3af;
+  --gray-500: #6b7280;
+  --gray-600: #bbb;
+  --gray-700: #e0e0e0;
+  --warning-color: #ff9800;
+  --error-color: #d32f2f;
+  --error-red: #dc3545;
+  --error-red-light: #fff5f5;
+  --error-light: #fee;
+  --error-lighter: #fdd;
+  --error-border: #fcc;
+  --error-red-alpha: rgba(220, 53, 69, 0.1);
+  --button-primary: #1976d2;
+  --button-secondary: #f5f5f5;
+  --button-text: #333;
+  --button-border: #ddd;
+  --success-color: #4caf50;
+  --success-color-dark: #45a049;
+  --background-light: #f9f9f9;
+  --border-light: #e0e0e0;
+  --overlay-background: rgba(0, 0, 0, 0.5);
+  --overlay-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  --success-shadow: 0 4px 16px rgba(76, 175, 80, 0.3);
+  --white-alpha-20: rgba(255, 255, 255, 0.2);
+  --white-alpha-30: rgba(255, 255, 255, 0.3);
+  --white-alpha-50: rgba(255, 255, 255, 0.5);
+  --white-alpha-80: rgba(255, 255, 255, 0.8);
+  --white-alpha-95: rgba(255, 255, 255, 0.95);
+  --blue-alpha-03: rgba(102, 126, 234, 0.03);
+  --blue-alpha-05: rgba(102, 126, 234, 0.05);
+  --blue-alpha-20: rgba(37, 99, 235, 0.2);
+  --blue-alpha-30: rgba(37, 99, 235, 0.3);
+  --cyan-alpha-10: rgba(6, 182, 212, 0.1);
+  --cyan-alpha-20: rgba(6, 182, 212, 0.2);
+  --cyan-alpha-25: rgba(6, 182, 212, 0.25);
+  --cyan-alpha-30: rgba(6, 182, 212, 0.3);
+  --black-alpha-05: rgba(0, 0, 0, 0.05);
+  --black-alpha-10: rgba(0, 0, 0, 0.1);
+  --black-alpha-15: rgba(0, 0, 0, 0.15);
+  --black-alpha-20: rgba(0, 0, 0, 0.2);
+  --purple-alpha-05: rgba(118, 75, 162, 0.05);
+  
+  /* Spacing */
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 0.75rem;
+  --spacing-lg: 1rem;
+  --spacing-xl: 1.5rem;
+  --spacing-2xl: 2rem;
+  
+  /* Border Radius */
+  --border-radius-sm: 4px;
+  --border-radius-md: 8px;
+  --border-radius-lg: 10px;
+  --border-radius-xl: 12px;
+  --border-radius-2xl: 16px;
+  --border-radius-round: 50%;
+  
+  /* Border Width */
+  --border-width-thin: 1px;
+  --border-width-medium: 2px;
+  --border-width-thick: 3px;
+  --border-width-extra-thick: 4px;
+  
+  /* Font Sizes */
+  --font-size-xs: 0.7rem;
+  --font-size-sm: 0.85rem;
+  --font-size-base: 0.9rem;
+  --font-size-md: 0.95rem;
+  --font-size-lg: 1rem;
+  --font-size-xl: 1.05rem;
+  --font-size-2xl: 1.1rem;
+  --font-size-3xl: 1.15rem;
+  --font-size-4xl: 1.25rem;
+  --font-size-5xl: 1.5rem;
+  --font-size-6xl: 1.75rem;
+  --font-size-7xl: 2rem;
+  --font-size-8xl: 2.5rem;
+  
+  /* Letter Spacing */
+  --letter-spacing-tight: 0.3px;
+  --letter-spacing-normal: 0.5px;
+  --letter-spacing-wide: 0.8px;
+  
+  /* Shadows */
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.15);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.2);
+  --shadow-warning: 0 2px 8px rgba(255, 152, 0, 0.3);
+  --shadow-error: 0 4px 16px rgba(204, 51, 51, 0.15);
+  --shadow-primary: 0 4px 16px rgba(6, 182, 212, 0.3);
+  --shadow-section: 0 2px 8px var(--blue-alpha-20);
+  --shadow-section-hover: 0 4px 12px var(--blue-alpha-30);
+  --shadow-input-hover: 0 2px 8px var(--black-alpha-05);
+  --shadow-dropdown: 0 8px 24px var(--black-alpha-20);
+  --shadow-card-hover: 0 10px 25px var(--black-alpha-15);
+  --shadow-card-selected: 0 12px 30px var(--cyan-alpha-25);
+  --shadow-inset: inset 0 var(--border-width-thin) var(--border-width-thick) var(--black-alpha-05);
+  --shadow-cyan-glow: 0 0 20px var(--cyan-alpha-20);
+  --shadow-header: 0 var(--border-width-extra-thick) var(--spacing-lg) var(--blue-alpha-30);
+  --shadow-container: 0 8px 32px var(--black-alpha-12);
+  --shadow-button: 0 4px 16px var(--cyan-alpha-30);
+  --shadow-button-hover: 0 12px 32px var(--cyan-alpha-50), 0 4px 16px var(--blue-alpha-30);
+  --shadow-button-active: 0 6px 20px var(--cyan-alpha-40), 0 2px 8px var(--blue-alpha-20);
+  
+  /* Additional Alpha Colors */
+  --black-alpha-12: rgba(0, 0, 0, 0.12);
+  --white-alpha-40: rgba(255, 255, 255, 0.4);
+  --cyan-alpha-40: rgba(6, 182, 212, 0.4);
+  --cyan-alpha-50: rgba(6, 182, 212, 0.5);
+  
+  /* Layout */
+  --max-width-container: 900px;
+  --max-width-modal: 500px;
+  --max-width-error: 600px;
+  --modal-width: 90%;
+  --modal-max-height: 90vh;
+  
+  /* Icon & Component Sizes */
+  --icon-size-checkmark: 80px;
+  --icon-size-checkmark-mobile: 60px;
+  --icon-size-spinner: 48px;
+  --icon-size-checkbox: 20px;
+  --icon-size-flag: 28px;
+  
+  /* Typography */
+  --base-font-size: 16px;
+  --base-line-height: 1.6;
+  
+  /* Outline & Focus */
+  --outline-width: 2px;
+  --outline-offset: var(--border-width-medium);
+  
+  /* Animation Values */
+  --transform-translate-xs: -5px;
+  --transform-translate-sm: -1px;
+  --transform-translate-md: -2px;
+  --transform-translate-card: -3px;
+  --transform-translate-lg: -4px;
+  --transform-translate-xl: 10px;
+  --transform-translate-2xl: 20px;
+  --transform-translate-modal: 50px;
+  --transform-scale-hover: 1.02;
+  --transform-scale-active: 1.01;
+  --transform-scale-checkbox-hover: 1.1;
+  --transform-scale-emoji-hover: 1.1;
+  
+  /* Grid Min Widths */
+  --grid-min-width-date: 200px;
+  --grid-min-width-addon: 200px;
+  --grid-min-width-vehicle: 150px;
+  
+  /* Dropdown Sizes */
+  --dropdown-min-width: 160px;
+  --dropdown-min-width-mobile: 140px;
+  --dropdown-button-min-width: 120px;
+  --dropdown-button-min-width-mobile: 100px;
+  
+  /* Blur Effects */
+  --blur-backdrop: 10px;
+  
+  /* Z-index */
+  --z-index-base: 0;
+  --z-index-dropdown: 10;
+  --z-index-sticky: 100;
+  --z-index-fixed: 200;
+  --z-index-modal-backdrop: 1000;
+  --z-index-modal: 1001;
+}
+
+html {
+  font-size: var(--base-font-size);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  line-height: var(--base-line-height);
+  color: var(--text-color);
+  background: linear-gradient(to bottom right, var(--background-color), var(--background-cyan));
+  overflow-x: hidden;
+}
+
+#root {
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Accessibility */
+button:focus-visible,
+input:focus-visible {
+  outline: var(--outline-width) solid var(--primary-color);
+  outline-offset: var(--outline-offset);
+}
+
+button {
+  font-family: inherit;
+}
+
+input {
+  font-family: inherit;
+}
+
+/* Responsive images */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
