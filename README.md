@@ -2,6 +2,9 @@
 
 A full-stack car rental booking application built with **Spring Boot** (backend) and **React + Redux + TypeScript** (frontend), featuring internationalization, responsive design, and production-ready best practices.
 
+🎥 **Live Demo:**  
+[Watch the project demo here](https://drive.google.com/file/d/1UEvRqx3RnJaoL1f1vmxABJE4Ozy_E7IG/view?usp=sharing)
+
 ## 🚀 Features
 
 - **Vehicle Selection**: Choose from multiple vehicle types (Sedan, SUV, Luxury, Van)
