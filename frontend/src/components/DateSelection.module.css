@@ -1,12 +1,12 @@
 .section {
-  margin-bottom: 2rem;
+  margin-bottom: var(--spacing-2xl);
   animation: fadeInUp 0.5s ease-out 0.1s both;
 }
 
 @keyframes fadeInUp {
   from {
     opacity: 0;
-    transform: translateY(10px);
+    transform: translateY(var(--transform-translate-xl));
   }
   to {
     opacity: 1;
@@ -16,49 +16,49 @@
 
 .sectionTitle {
   background: linear-gradient(to right, var(--secondary-color), var(--primary-color), var(--accent-teal));
-  color: white;
-  padding: 1rem 1.25rem;
-  margin: 0 0 1rem 0;
-  border-radius: 8px 8px 0 0;
-  font-size: 1.25rem;
+  color: var(--white);
+  padding: var(--spacing-lg) var(--spacing-xl);
+  margin: 0 0 var(--spacing-lg) 0;
+  border-radius: var(--border-radius-md) var(--border-radius-md) 0 0;
+  font-size: var(--font-size-4xl);
   font-weight: 600;
-  letter-spacing: 0.3px;
-  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.2);
+  letter-spacing: var(--letter-spacing-tight);
+  box-shadow: var(--shadow-section);
   transition: box-shadow 0.3s ease;
 }
 
 .sectionTitle:hover {
-  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+  box-shadow: var(--shadow-section-hover);
 }
 
 .dateContainer {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1.5rem;
-  padding: 1.25rem;
+  grid-template-columns: repeat(auto-fit, minmax(var(--grid-min-width-date), 1fr));
+  gap: var(--spacing-xl);
+  padding: var(--spacing-xl);
 }
 
 .dateField {
   display: flex;
   flex-direction: column;
-  gap: 0.625rem;
+  gap: var(--spacing-md);
 }
 
 .label {
   font-weight: 500;
   color: var(--text-color);
-  font-size: 0.95rem;
+  font-size: var(--font-size-md);
   transition: color 0.2s ease;
 }
 
 .dateInput {
-  padding: 0.875rem;
-  border: 1px solid var(--accent-blue-200);
-  border-radius: 8px;
-  font-size: 1rem;
+  padding: var(--spacing-md);
+  border: var(--border-width-thin) solid var(--accent-blue-200);
+  border-radius: var(--border-radius-md);
+  font-size: var(--font-size-lg);
   font-family: inherit;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  background: white;
+  background: var(--white);
   color: var(--text-color);
 }
 
@@ -67,38 +67,38 @@
 }
 
 .dateInput:hover:not(:disabled) {
-  border-color: #bbb;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  border-color: var(--gray-600);
+  box-shadow: var(--shadow-input-hover);
 }
 
 .dateInput:focus {
   outline: none;
   border-color: var(--primary-color);
-  box-shadow: 0 0 0 2px var(--accent-cyan-200);
-  transform: translateY(-1px);
+  box-shadow: 0 0 0 var(--border-width-medium) var(--accent-cyan-200);
+  transform: translateY(var(--transform-translate-sm));
 }
 
 .dateInput:disabled {
-  background-color: #f8f8f8;
+  background-color: var(--gray-100);
   cursor: not-allowed;
   opacity: 0.5;
-  border-color: #e0e0e0;
+  border-color: var(--gray-700);
 }
 
 .dateInput.error {
-  border-color: #dc3545;
-  background-color: #fff5f5;
+  border-color: var(--error-red);
+  background-color: var(--error-red-light);
 }
 
 .dateInput.error:focus {
-  border-color: #dc3545;
-  box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.1);
+  border-color: var(--error-red);
+  box-shadow: 0 0 0 var(--border-width-thick) var(--error-red-alpha);
 }
 
 .errorMessage {
-  color: #dc3545;
-  font-size: 0.875rem;
-  margin-top: 0.375rem;
+  color: var(--error-red);
+  font-size: var(--font-size-sm);
+  margin-top: var(--spacing-sm);
   display: block;
   animation: fadeIn 0.2s ease-out;
 }
@@ -106,7 +106,7 @@
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(-5px);
+    transform: translateY(var(--transform-translate-xs));
   }
   to {
     opacity: 1;

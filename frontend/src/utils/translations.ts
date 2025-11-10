@@ -11,7 +11,6 @@ import { TFunction } from 'i18next';
 export const translateVehicleName = (vehicleName: string, t: TFunction): string => {
   const translationKey = `vehicles.${vehicleName}`;
   const translated = t(translationKey);
-  // If translation returns the key itself, it means translation is missing, return original
   return translated === translationKey ? vehicleName : translated;
 };
 
@@ -26,8 +25,5 @@ export const translateVehicleName = (vehicleName: string, t: TFunction): string 
 export const translateAddonName = (addonName: string, t: TFunction): string => {
   const translationKey = `addons.${addonName}`;
   const translated = t(translationKey);
-  // If translation returns the key itself, it means translation is missing, return original
   return translated === translationKey ? addonName : translated;
 };
-
-

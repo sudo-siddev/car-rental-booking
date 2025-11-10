@@ -30,7 +30,6 @@ const AddonsSelection = memo(() => {
     );
   }
 
-  // Display loading state while addons are being fetched
   if (addons.length === 0) {
     return (
       <section className={styles.section}>

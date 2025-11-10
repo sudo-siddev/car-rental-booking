@@ -17,7 +17,6 @@ const VehicleSelection = memo(() => {
 
   const handleSelect = (vehicle: Vehicle) => {
     dispatch(selectVehicle(vehicle));
-    // Fetch vehicle-specific addons when a vehicle is selected
     dispatch(fetchAddons(vehicle.id));
   };
 

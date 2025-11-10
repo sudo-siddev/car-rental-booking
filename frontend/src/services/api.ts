@@ -1,13 +1,11 @@
 import axios, { AxiosInstance, AxiosError } from 'axios';
 import { Vehicle, Addon } from '../types';
 import { logger } from '../utils/logger';
+import { ApiError, ERROR_CODES } from '../utils/errorCodes';
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000/api/v1';
 
-/**
- * Cache configuration for API responses
- */
-const CACHE_DURATION = 5 * 60 * 1000; // 5 minutes
+const CACHE_DURATION = 5 * 60 * 1000;
 
 interface CacheEntry<T> {
   data: T;
@@ -16,7 +14,9 @@ interface CacheEntry<T> {
 
 /**
  * API Service class for handling all API calls with caching, error handling, and interceptors.
- * Implements production-ready patterns including response caching and offline detection.
+ * 
+ * PR Review Fix: Throw ApiError with error codes instead of translated strings.
+ * Network/API errors use error codes; server errors use plain Error with server message.
  */
 class ApiService {
   private client: AxiosInstance;
@@ -31,12 +31,10 @@ class ApiService {
       },
     });
 
-    // Request interceptor
     this.client.interceptors.request.use(
       (config) => {
-        // Check for offline status
         if (!navigator.onLine) {
-          const error = new Error('You are currently offline. Please check your internet connection.');
+          const error = new ApiError(ERROR_CODES.OFFLINE);
           logger.warn('API request blocked: offline', { url: config.url, method: config.method });
           return Promise.reject(error);
         }
@@ -51,10 +49,8 @@ class ApiService {
       }
     );
 
-    // Response interceptor
     this.client.interceptors.response.use(
       (response) => {
-        // Cache successful responses
         const cacheKey = `${response.config.method}_${response.config.url}`;
         this.cache.set(cacheKey, {
           data: response.data,
@@ -69,46 +65,39 @@ class ApiService {
         const status = error.response?.status;
 
         if (error.response) {
-          // Server responded with error status
           const message = (error.response.data as { message?: string })?.message || 'An error occurred';
           logger.logApiError(method, url, status, new Error(message), error.response.data);
           return Promise.reject(new Error(message));
         } else if (error.request) {
-          // Request made but no response (network error or offline)
           if (!navigator.onLine) {
             logger.warn('Network request failed: offline', { method, url });
-            return Promise.reject(new Error('You are currently offline. Please check your internet connection.'));
+            return Promise.reject(new ApiError(ERROR_CODES.OFFLINE));
           }
           
-          // Check if it's a timeout error
           if (error.code === 'ECONNABORTED' || error.message?.includes('timeout')) {
             logger.logApiError(method, url, undefined, new Error('Request timeout'), {
               networkError: true,
               timeout: true,
               timeoutMs: 10000,
             });
-            return Promise.reject(new Error('Request timed out. Please check your connection and try again.'));
+            return Promise.reject(new ApiError(ERROR_CODES.TIMEOUT));
           }
           
           logger.logApiError(method, url, undefined, new Error('Network error'), {
             networkError: true,
             timeout: false,
           });
-          return Promise.reject(new Error('Network error. Please check your connection.'));
+          return Promise.reject(new ApiError(ERROR_CODES.NETWORK_ERROR));
         } else {
-          // Configuration or setup error
           logger.logApiError(method, url, undefined, error, {
             configError: true,
           });
-          return Promise.reject(new Error(error.message || 'An unexpected error occurred'));
+          return Promise.reject(new ApiError(ERROR_CODES.UNEXPECTED, error.message));
         }
       }
     );
   }
 
-  /**
-   * Get cached data if available and not expired
-   */
   private getCached<T>(key: string): T | null {
     const entry = this.cache.get(key) as CacheEntry<T> | undefined;
     if (entry && Date.now() - entry.timestamp < CACHE_DURATION) {
@@ -156,10 +145,6 @@ class ApiService {
     return response.data;
   }
 
-  /**
-   * Clear the API response cache.
-   * Useful when data needs to be refreshed.
-   */
   clearCache(): void {
     this.cache.clear();
   }

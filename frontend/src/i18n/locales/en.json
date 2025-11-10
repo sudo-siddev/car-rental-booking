@@ -26,6 +26,20 @@
   "error": "Error",
   "retry": "Retry",
   "language": "Language",
+  "offline": "You are currently offline. Some features may not be available.",
+  "errorBoundary": {
+    "title": "Something went wrong",
+    "defaultMessage": "An unexpected error occurred",
+    "reload": "Reload Page",
+    "tryAgain": "Try Again",
+    "details": "Error Details (Development Only)"
+  },
+  "errors": {
+    "offline": "You are currently offline. Please check your internet connection.",
+    "networkError": "Network error. Please check your connection.",
+    "timeout": "Request timed out. Please check your connection and try again.",
+    "unexpected": "An unexpected error occurred"
+  },
   "validation": {
     "pastDate": "Please select a date from today onwards",
     "invalidPickupDate": "Pick-up date cannot be in the past",

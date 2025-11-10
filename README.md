@@ -13,7 +13,7 @@ A full-stack car rental booking application built with **Spring Boot** (backend)
 - **Add-ons Selection**: Select multiple add-ons (GPS, Child Seat, WiFi, Driver Service, Insurance, etc.)
 - **Real-time Cost Calculation**: Dynamic calculation with base cost, add-ons, and GST (18%)
 - **Booking Confirmation**: Animated confirmation popup with booking details
-- **Internationalization**: Support for English, Hindi, and Spanish
+- **Internationalization**: Support for English, Hindi, and Spanish with dynamic translation (no page reload needed)
 - **Responsive Design**: Mobile-friendly UI that works on all devices
 - **Error Handling**: Comprehensive error boundaries and API error handling
 - **Loading States**: Loading spinners for async operations
@@ -117,16 +117,27 @@ bookingservice/
 ├── frontend/
 │   ├── src/
 │   │   ├── components/              # React components
+│   │   │   ├── Header.tsx          # Reusable header component
+│   │   │   ├── OfflineBanner.tsx   # Offline status banner
+│   │   │   ├── DateField.tsx       # Date input field component
+│   │   │   ├── DetailRow.tsx       # Detail row component
+│   │   │   ├── SummaryRow.tsx      # Summary row component
+│   │   │   └── ...                 # Other components
 │   │   ├── i18n/                    # Internationalization config
 │   │   │   └── locales/            # Translation files (en, hi, es)
 │   │   ├── services/               # API service with caching
 │   │   ├── store/                  # Redux store and slices
 │   │   ├── styles/                 # Utility CSS classes
 │   │   ├── types/                  # TypeScript types
-│   │   ├── utils/                  # Utility functions (translations)
+│   │   ├── utils/                  # Utility functions
+│   │   │   ├── formatters.ts       # Currency and date formatting
+│   │   │   ├── dates.ts            # Date validation utilities
+│   │   │   ├── errorCodes.ts       # Error code constants
+│   │   │   ├── validationErrors.ts # Validation error constants
+│   │   │   ├── translations.ts     # Translation helpers
+│   │   │   └── logger.ts           # Logging utility
 │   │   ├── App.tsx
-│   │   ├── App.module.css
-│   │   ├── index.css
+│   │   ├── index.css               # Global styles with CSS variables
 │   │   └── main.tsx
 │   ├── package.json
 │   ├── vite.config.ts
@@ -205,12 +216,25 @@ The application supports three languages:
 - **Hindi (hi)** - हिंदी
 - **Spanish (es)** - Español
 
-Use the language switcher in the header to change languages.
+**Key Features**:
+- **Dynamic Translation**: Error messages and validation errors update immediately when the language changes (no page reload required)
+- **Translation Keys**: API errors and validation errors use translation keys that are translated at display time
+- **Seamless Experience**: All UI text, error messages, and validation messages update in real-time
+
+Use the language switcher in the header to change languages. All text, including error messages and validation errors, will update instantly.
 
 ## 🎨 Styling
 
 - **CSS Modules** for component-scoped styling
-- **CSS Variables** for theming
+- **CSS Variables** for comprehensive theming system:
+  - **Colors**: Primary, secondary, accent colors, grays, error colors, alpha transparencies
+  - **Spacing**: Consistent spacing scale (xs, sm, md, lg, xl, 2xl)
+  - **Typography**: Font size scale (xs through 8xl) and letter spacing
+  - **Borders**: Border radius scale and border width constants
+  - **Shadows**: Reusable shadow variables for different use cases
+  - **Z-index**: Structured z-index scale (10, 100, 200, 1000, 1001)
+- **Centralized Variables**: All design tokens in `index.css` for easy maintenance
+- **No Hardcoded Values**: All styling values use CSS variables (follows SCSS architecture best practices)
 - **BEM Convention** for class naming
 - **Responsive Design** with mobile-first approach
 - **Gradient Headers** for visual appeal
@@ -236,6 +260,10 @@ Use the language switcher in the header to change languages.
 
 - **Error Boundary**: Catches React component errors
 - **API Error Handling**: Axios interceptors for request/response errors
+- **Error Code System**: Type-safe error codes (e.g., `errors.offline`, `errors.networkError`) stored in Redux instead of translated strings
+- **Dynamic Translation**: Error messages translate at display time, updating immediately when language changes
+- **Custom Error Classes**: `ApiError` class with error codes for type-safe error handling
+- **Validation Errors**: Validation error keys (e.g., `validation.invalidPickupDate`) stored in component state and translated at render time
 - **User-friendly Error Messages**: Displayed with retry options
 - **Loading States**: Spinners during async operations
 
@@ -331,13 +359,33 @@ This project is for educational/demonstration purposes.
 
 ## 👨‍💻 Development Notes
 
-- All components are functional components using React Hooks
-- Redux Toolkit is used for state management
-- TypeScript provides type safety throughout
-- CSS Modules prevent style conflicts
-- Error boundaries catch and handle React errors gracefully
-- Loading states improve user experience
-- Internationalization makes the app accessible to multiple languages
+### Code Organization
+
+- **Component Architecture**: 
+  - All components are functional components using React Hooks
+  - Reusable components extracted for better code organization (Header, OfflineBanner, DateField, DetailRow, SummaryRow)
+  - Components follow single responsibility principle
+- **State Management**: Redux Toolkit is used for state management
+- **Type Safety**: TypeScript provides type safety throughout with proper interfaces and type guards
+- **Utility Functions**: 
+  - `utils/formatters.ts` - Currency and date formatting functions
+  - `utils/dates.ts` - Date validation and manipulation utilities
+  - `utils/errorCodes.ts` - Error code constants and ApiError class
+  - `utils/validationErrors.ts` - Validation error constants
+- **Constants**: All magic strings and numbers replaced with named constants
+- **Styling**: 
+  - CSS Modules prevent style conflicts
+  - CSS variables system for centralized theming
+  - No inline styles - all styles in CSS modules
+- **Error Handling**: 
+  - Error boundaries catch and handle React errors gracefully
+  - Type-safe error codes for API errors
+  - Dynamic translation of error messages
+- **Internationalization**: 
+  - Dynamic translation system (no page reload needed)
+  - Error messages and validation errors update immediately when language changes
+  - Translation keys stored in state, translated at display time
+- **Loading States**: Loading spinners improve user experience during async operations
 
 ## 🎯 Stretch Goals Completed
 
@@ -373,15 +421,18 @@ The application is production-ready with:
 - ✅ Clean code architecture
 - ✅ Type safety with TypeScript
 - ✅ Error handling and boundaries
+- ✅ Type-safe error codes and dynamic error translation
 - ✅ Loading and error states
 - ✅ Responsive design
-- ✅ Internationalization
+- ✅ Dynamic internationalization (no page reload needed)
 - ✅ Accessible UI components
 - ✅ Comprehensive validation
 - ✅ Vehicle-specific addons
 - ✅ Production security hardening
 - ✅ Enhanced UI animations
 - ✅ Environment-aware configuration
+- ✅ CSS variables system for easy maintenance
+- ✅ Reusable components and utilities
 - ✅ **All stretch goals completed**
 
 ## 🚀 Production Deployment
@@ -421,4 +472,4 @@ The application is production-ready with:
   - Disables H2 console
   - Sanitizes sensitive data in logs
   - Uses generic error messages
-  - Enables security headersAdded setup note for PR
+  - Enables security headers

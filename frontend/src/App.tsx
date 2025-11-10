@@ -8,9 +8,10 @@ import DateSelection from './components/DateSelection';
 import AddonsSelection from './components/AddonsSelection';
 import BookingSummary from './components/BookingSummary';
 import BookingConfirmation from './components/BookingConfirmation';
-import LanguageSwitcher from './components/LanguageSwitcher';
 import LoadingSpinner from './components/LoadingSpinner';
 import ErrorMessage from './components/ErrorMessage';
+import OfflineBanner from './components/OfflineBanner';
+import Header from './components/Header';
 import styles from './App.module.css';
 import './i18n/config';
 
@@ -25,11 +26,9 @@ function App() {
     dispatch(fetchVehicles());
   }, [dispatch]);
 
-  // Listen for online/offline events
   useEffect(() => {
     const handleOnline = () => {
       setIsOnline(true);
-      // Refetch vehicles when connection is restored
       if (!loading && !error) {
         dispatch(fetchVehicles());
       }
@@ -61,26 +60,8 @@ function App() {
   return (
     <div className={styles.app}>
       <div className={styles.container}>
-        <header className={styles.header}>
-          <div className={styles.headerLeft}>
-            <span className={styles.emoji}>🚗</span>
-            <h1 className={styles.title}>{t('title')}</h1>
-          </div>
-          <LanguageSwitcher />
-        </header>
-        {!isOnline && (
-          <div style={{
-            padding: '0.75rem',
-            backgroundColor: '#ff9800',
-            color: 'white',
-            textAlign: 'center',
-            marginBottom: '1rem',
-            borderRadius: '8px',
-            boxShadow: '0 2px 8px rgba(255, 152, 0, 0.3)'
-          }}>
-            ⚠️ {t('offline') || 'You are currently offline. Some features may not be available.'}
-          </div>
-        )}
+        <Header />
+        {!isOnline && <OfflineBanner />}
         {loading && <LoadingSpinner />}
         {error && <ErrorMessage message={error} onRetry={handleRetry} />}
         {!loading && !error && (

@@ -1,0 +1,70 @@
+.errorContainer {
+  padding: var(--spacing-2xl);
+  text-align: center;
+  max-width: var(--max-width-error);
+  margin: 0 auto;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+.errorTitle {
+  color: var(--error-color);
+  margin-bottom: var(--spacing-lg);
+}
+
+.errorMessage {
+  color: var(--text-secondary);
+  margin-bottom: var(--spacing-xl);
+}
+
+.buttonContainer {
+  margin-bottom: var(--spacing-xl);
+}
+
+.reloadButton {
+  padding: var(--spacing-md) var(--spacing-xl);
+  font-size: var(--font-size-lg);
+  background-color: var(--button-primary);
+  color: var(--white);
+  border: none;
+  border-radius: var(--border-radius-sm);
+  cursor: pointer;
+  margin-right: var(--spacing-lg);
+}
+
+.reloadButton:hover {
+  opacity: 0.9;
+}
+
+.tryAgainButton {
+  padding: var(--spacing-md) var(--spacing-xl);
+  font-size: var(--font-size-lg);
+  background-color: var(--button-secondary);
+  color: var(--button-text);
+  border: var(--border-width-thin) solid var(--button-border);
+  border-radius: var(--border-radius-sm);
+  cursor: pointer;
+}
+
+.tryAgainButton:hover {
+  background-color: var(--gray-300);
+}
+
+.errorDetails {
+  margin-top: var(--spacing-2xl);
+  text-align: left;
+  background-color: var(--button-secondary);
+  padding: var(--spacing-lg);
+  border-radius: var(--border-radius-sm);
+}
+
+.errorDetailsSummary {
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.errorDetailsPre {
+  overflow: auto;
+  font-size: var(--font-size-sm);
+  margin-top: var(--spacing-sm);
+}
+

@@ -26,6 +26,20 @@
   "error": "Error",
   "retry": "Reintentar",
   "language": "Idioma",
+  "offline": "Actualmente estás sin conexión. Algunas funciones pueden no estar disponibles.",
+  "errorBoundary": {
+    "title": "Algo salió mal",
+    "defaultMessage": "Ocurrió un error inesperado",
+    "reload": "Recargar Página",
+    "tryAgain": "Intentar de Nuevo",
+    "details": "Detalles del Error (Solo Desarrollo)"
+  },
+  "errors": {
+    "offline": "Actualmente estás sin conexión. Por favor, verifica tu conexión a Internet.",
+    "networkError": "Error de red. Por favor, verifica tu conexión.",
+    "timeout": "La solicitud expiró. Por favor, verifica tu conexión e intenta de nuevo.",
+    "unexpected": "Ocurrió un error inesperado"
+  },
   "validation": {
     "pastDate": "Por favor, seleccione una fecha a partir de hoy",
     "invalidPickupDate": "La fecha de recogida no puede ser en el pasado",

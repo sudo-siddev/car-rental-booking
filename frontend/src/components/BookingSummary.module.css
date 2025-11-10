@@ -1,12 +1,12 @@
 .section {
-  margin-bottom: 2rem;
+  margin-bottom: var(--spacing-2xl);
   animation: fadeInUp 0.5s ease-out 0.3s both;
 }
 
 @keyframes fadeInUp {
   from {
     opacity: 0;
-    transform: translateY(10px);
+    transform: translateY(var(--transform-translate-xl));
   }
   to {
     opacity: 1;
@@ -16,42 +16,40 @@
 
 .sectionTitle {
   background: linear-gradient(to right, var(--secondary-color), var(--primary-color), var(--accent-teal));
-  color: white;
-  padding: 1rem 1.25rem;
-  margin: 0 0 1rem 0;
-  border-radius: 8px 8px 0 0;
-  font-size: 1.25rem;
+  color: var(--white);
+  padding: var(--spacing-lg) var(--spacing-xl);
+  margin: 0 0 var(--spacing-lg) 0;
+  border-radius: var(--border-radius-md) var(--border-radius-md) 0 0;
+  font-size: var(--font-size-4xl);
   font-weight: 600;
-  letter-spacing: 0.3px;
-  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.2);
+  letter-spacing: var(--letter-spacing-tight);
+  box-shadow: var(--shadow-sm);
   transition: box-shadow 0.3s ease;
 }
 
 .sectionTitle:hover {
-  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+  box-shadow: var(--shadow-section-hover);
 }
 
 .summaryContent {
-  padding: 1.25rem;
+  padding: var(--spacing-xl);
   display: flex;
   flex-direction: column;
-  gap: 0.875rem;
-  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.8));
+  gap: var(--spacing-md);
+  background: linear-gradient(to bottom, var(--white-alpha-50), var(--white-alpha-80));
 }
 
 .summaryRow {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.625rem 0;
+  padding: var(--spacing-md) var(--spacing-sm);
   transition: background-color 0.2s ease;
-  border-radius: 4px;
-  padding-left: 0.5rem;
-  padding-right: 0.5rem;
+  border-radius: var(--border-radius-sm);
 }
 
 .summaryRow:hover {
-  background-color: rgba(102, 126, 234, 0.03);
+  background-color: var(--blue-alpha-03);
 }
 
 .label {
@@ -69,30 +67,30 @@
 .addonsSection {
   display: flex;
   flex-direction: column;
-  gap: 0.625rem;
-  margin: 0.75rem 0;
-  padding: 1rem;
-  background: linear-gradient(135deg, #f9f9f9 0%, #f5f5f5 100%);
-  border-radius: 8px;
-  border: 1px solid rgba(102, 126, 234, 0.1);
-  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
+  gap: var(--spacing-md);
+  margin: var(--spacing-md) 0;
+  padding: var(--spacing-lg);
+  background: linear-gradient(135deg, var(--background-light) 0%, var(--button-secondary) 100%);
+  border-radius: var(--border-radius-md);
+  border: var(--border-width-thin) solid var(--border-color);
+  box-shadow: var(--shadow-inset);
 }
 
 .addonRow {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.375rem 0;
+  padding: var(--spacing-sm) 0;
   transition: padding-left 0.2s ease;
 }
 
 .addonRow:hover {
-  padding-left: 0.25rem;
+  padding-left: var(--spacing-xs);
 }
 
 .addonItem {
   color: var(--text-color);
-  font-size: 0.95rem;
+  font-size: var(--font-size-md);
   transition: color 0.2s ease;
 }
 
@@ -108,35 +106,35 @@
 }
 
 .totalRow {
-  margin-top: 0.75rem;
-  padding-top: 1.25rem;
-  border-top: 2px solid var(--border-color);
-  background: linear-gradient(to right, transparent, rgba(102, 126, 234, 0.05), transparent);
-  border-radius: 4px;
-  padding-left: 0.5rem;
-  padding-right: 0.5rem;
+  margin-top: var(--spacing-md);
+  padding-top: var(--spacing-xl);
+  border-top: var(--border-width-medium) solid var(--border-color);
+  background: linear-gradient(to right, transparent, var(--blue-alpha-05), transparent);
+  border-radius: var(--border-radius-sm);
+  padding-left: var(--spacing-sm);
+  padding-right: var(--spacing-sm);
 }
 
 .totalLabel {
   font-weight: 700;
-  font-size: 1.15rem;
+  font-size: var(--font-size-3xl);
   color: var(--text-color);
-  letter-spacing: 0.3px;
+  letter-spacing: var(--letter-spacing-tight);
 }
 
 .totalValue {
   font-weight: 700;
-  font-size: 1.15rem;
+  font-size: var(--font-size-3xl);
   color: var(--accent-cyan-600);
-  letter-spacing: 0.3px;
-  text-shadow: 0 1px 2px rgba(6, 182, 212, 0.1);
+  letter-spacing: var(--letter-spacing-tight);
+  text-shadow: 0 var(--border-width-thin) var(--border-width-medium) var(--cyan-alpha-10);
 }
 
 @media (max-width: 768px) {
   .summaryRow {
     flex-direction: column;
     align-items: flex-start;
-    gap: 0.25rem;
+    gap: var(--spacing-xs);
   }
   
   .value {

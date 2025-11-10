@@ -3,21 +3,9 @@ import { useTranslation } from 'react-i18next';
 import { useAppSelector } from '../store/hooks';
 import { selectBookingSummary } from '../store/selectors';
 import { translateVehicleName, translateAddonName } from '../utils/translations';
+import { formatCurrency } from '../utils/formatters';
+import SummaryRow from './SummaryRow';
 import styles from './BookingSummary.module.css';
-
-/**
- * Formats a number as Indian Rupee currency.
- *
- * @param amount - The amount to format
- * @returns Formatted currency string (e.g., "₹12,500")
- */
-const formatCurrency = (amount: number): string => {
-  return new Intl.NumberFormat('en-IN', {
-    style: 'currency',
-    currency: 'INR',
-    maximumFractionDigits: 0,
-  }).format(amount);
-};
 
 /**
  * BookingSummary component displays the cost breakdown of the booking.
@@ -36,23 +24,18 @@ const BookingSummary = memo(() => {
     <section className={styles.section}>
       <h2 className={styles.sectionTitle}>{t('bookingSummary')}</h2>
       <div className={styles.summaryContent}>
-        <div className={styles.summaryRow}>
-          <span className={styles.label}>{t('vehicle')}:</span>
-          <span className={styles.value}>{translateVehicleName(summary.vehicle.name, t)}</span>
-        </div>
-        <div className={styles.summaryRow}>
-          <span className={styles.label}>{t('duration')}:</span>
-          <span className={styles.value}>
-            {summary.days} {t('days')}
-          </span>
-        </div>
-        <div className={styles.summaryRow}>
-          <span className={styles.label}>{t('baseCost')}:</span>
-          <span className={styles.value}>
-            {formatCurrency(summary.vehicle.costPerDay)} × {summary.days} {t('days')} ={' '}
-            {formatCurrency(summary.baseCost)}
-          </span>
-        </div>
+        <SummaryRow
+          label={t('vehicle')}
+          value={translateVehicleName(summary.vehicle.name, t)}
+        />
+        <SummaryRow
+          label={t('duration')}
+          value={`${summary.days} ${t('days')}`}
+        />
+        <SummaryRow
+          label={t('baseCost')}
+          value={`${formatCurrency(summary.vehicle.costPerDay)} × ${summary.days} ${t('days')} = ${formatCurrency(summary.baseCost)}`}
+        />
         {summary.selectedAddons.length > 0 && (
           <div className={styles.addonsSection}>
             <div className={styles.label}>{t('selectAddons')}:</div>
@@ -71,18 +54,19 @@ const BookingSummary = memo(() => {
             })}
           </div>
         )}
-        <div className={styles.summaryRow}>
-          <span className={styles.label}>{t('subtotal')}:</span>
-          <span className={styles.value}>{formatCurrency(summary.subtotal)}</span>
-        </div>
-        <div className={styles.summaryRow}>
-          <span className={styles.label}>{t('gst')}:</span>
-          <span className={styles.value}>{formatCurrency(summary.gst)}</span>
-        </div>
-        <div className={`${styles.summaryRow} ${styles.totalRow}`}>
-          <span className={styles.totalLabel}>{t('totalAmount')}:</span>
-          <span className={styles.totalValue}>{formatCurrency(summary.total)}</span>
-        </div>
+        <SummaryRow
+          label={t('subtotal')}
+          value={formatCurrency(summary.subtotal)}
+        />
+        <SummaryRow
+          label={t('gst')}
+          value={formatCurrency(summary.gst)}
+        />
+        <SummaryRow
+          label={t('totalAmount')}
+          value={formatCurrency(summary.total)}
+          isTotal={true}
+        />
       </div>
     </section>
   );

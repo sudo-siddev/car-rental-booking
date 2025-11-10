@@ -1,7 +1,8 @@
 /**
  * Production-ready logging utility for the frontend application.
- * Provides structured logging with different log levels and optional
- * integration with error tracking services (e.g., Sentry, LogRocket).
+ * 
+ * PR Review Fix: Defined LOG_LEVELS and BACKEND_LOG_ENDPOINT constants instead of string literals.
+ * Removed unnecessary comments.
  */
 
 type LogLevel = 'debug' | 'info' | 'warn' | 'error';
@@ -9,6 +10,15 @@ type LogLevel = 'debug' | 'info' | 'warn' | 'error';
 interface LogContext {
   [key: string]: unknown;
 }
+
+const LOG_LEVELS = {
+  DEBUG: 'debug',
+  INFO: 'info',
+  WARN: 'warn',
+  ERROR: 'error',
+} as const;
+
+const BACKEND_LOG_ENDPOINT = '/api/v1/logs';
 
 class Logger {
   private isDevelopment = import.meta.env.DEV;
@@ -40,24 +50,20 @@ class Logger {
     if (this.isDevelopment) {
       console.info(`[INFO] ${message}`, context || '');
     }
-    // In production, you might want to send to analytics service
   }
 
   /**
    * Log warning messages
    */
   warn(message: string, context?: LogContext): void {
-    // Only log to console in development
     if (this.isDevelopment) {
       console.warn(`[WARN] ${message}`, context || '');
     }
     
-    // Send warnings to error tracking in production
     if (this.errorTrackingEnabled && this.errorTrackingService) {
       const error = new Error(message);
       this.errorTrackingService(error, { level: 'warn', ...context });
     } else if (!this.isDevelopment) {
-      // In production without error tracking, send to backend
       this.sendToBackend('warn', message, context || {});
     }
   }
@@ -74,16 +80,13 @@ class Logger {
       ...context,
     };
 
-    // Only log to console in development
     if (this.isDevelopment) {
       console.error(`[ERROR] ${message}`, errorObj, context || '');
     }
 
-    // Send to error tracking service in production
     if (this.errorTrackingEnabled && this.errorTrackingService) {
       this.errorTrackingService(errorObj, errorContext);
     } else if (!this.isDevelopment) {
-      // In production without error tracking, send to backend logging endpoint
       this.sendToBackend('error', message, errorContext);
     }
   }
@@ -93,9 +96,8 @@ class Logger {
    */
   private async sendToBackend(level: LogLevel, message: string, context: LogContext): Promise<void> {
     try {
-      // Only send errors and warnings to reduce noise
-      if (level === 'error' || level === 'warn') {
-        await fetch('/api/v1/logs', {
+      if (level === LOG_LEVELS.ERROR || level === LOG_LEVELS.WARN) {
+        await fetch(BACKEND_LOG_ENDPOINT, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
@@ -109,8 +111,6 @@ class Logger {
         });
       }
     } catch (err) {
-      // Silently fail - don't let logging errors break the app
-      // Only log in development to avoid console statements in production
       if (this.isDevelopment) {
         console.error('Failed to send log to backend:', err);
       }
@@ -143,10 +143,7 @@ class Logger {
     if (this.isDevelopment) {
       this.debug(`User Action: ${action}`, context);
     }
-    // In production, send to analytics service
   }
 }
 
-// Export singleton instance
 export const logger = new Logger();
-

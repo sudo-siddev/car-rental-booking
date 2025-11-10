@@ -2,6 +2,7 @@ import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 import { BookingState, Vehicle } from '../types';
 import { apiService } from '../services/api';
 import { logger } from '../utils/logger';
+import { ApiError } from '../utils/errorCodes';
 
 const initialState: BookingState = {
   selectedVehicle: null,
@@ -15,7 +16,6 @@ const initialState: BookingState = {
   showConfirmation: false,
 };
 
-// Async thunks
 export const fetchVehicles = createAsyncThunk(
   'booking/fetchVehicles',
   async (_, { rejectWithValue }) => {
@@ -24,13 +24,15 @@ export const fetchVehicles = createAsyncThunk(
       const vehicles = await apiService.getVehicles();
       logger.info(`Successfully fetched ${vehicles.length} vehicles`);
       return vehicles;
-    } catch (error) {
-      const errorMessage = (error as Error).message;
+      } catch (error) {
+        const errorKey = error instanceof ApiError
+          ? error.errorCode
+          : (error as Error).message;
       logger.error('Failed to fetch vehicles', error, {
         action: 'fetchVehicles',
-        errorMessage,
+        errorKey,
       });
-      return rejectWithValue(errorMessage);
+      return rejectWithValue(errorKey);
     }
   }
 );
@@ -43,14 +45,16 @@ export const fetchAddons = createAsyncThunk(
       const addons = await apiService.getAddons(vehicleId);
       logger.info(`Successfully fetched ${addons.length} addons for vehicle ${vehicleId || 'none'}`);
       return addons;
-    } catch (error) {
-      const errorMessage = (error as Error).message;
+      } catch (error) {
+        const errorKey = error instanceof ApiError
+          ? error.errorCode
+          : (error as Error).message;
       logger.error('Failed to fetch addons', error, {
         action: 'fetchAddons',
         vehicleId,
-        errorMessage,
+        errorKey,
       });
-      return rejectWithValue(errorMessage);
+      return rejectWithValue(errorKey);
     }
   }
 );
@@ -60,20 +64,16 @@ const bookingSlice = createSlice({
   initialState,
   reducers: {
     selectVehicle: (state, action: PayloadAction<Vehicle>) => {
-      // If vehicle is changing (not initial selection), clear dates
       if (state.selectedVehicle && state.selectedVehicle.id !== action.payload.id) {
         state.pickupDate = '';
         state.dropoffDate = '';
       }
       state.selectedVehicle = action.payload;
-      // Clear addons and selections when vehicle changes
-      // New addons will be fetched based on selected vehicle
       state.selectedAddons = [];
       state.addons = [];
     },
     setPickupDate: (state, action: PayloadAction<string>) => {
       state.pickupDate = action.payload;
-      // Clear dropoff date if it becomes invalid after pickup date change
       if (state.dropoffDate && state.dropoffDate <= action.payload) {
         state.dropoffDate = '';
       }
@@ -106,7 +106,6 @@ const bookingSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      // Fetch vehicles
       .addCase(fetchVehicles.pending, (state) => {
         state.loading = true;
         state.error = null;
@@ -119,9 +118,7 @@ const bookingSlice = createSlice({
         state.loading = false;
         state.error = action.payload as string;
       })
-      // Fetch addons - local loading state handled in component
       .addCase(fetchAddons.pending, (state) => {
-        // Clear any previous errors
         if (state.error) {
           state.error = null;
         }
@@ -130,8 +127,6 @@ const bookingSlice = createSlice({
         state.addons = action.payload;
       })
       .addCase(fetchAddons.rejected, (state, action) => {
-        // Log error if vehicles are already loaded
-        // Component handles display of loading/error states for addons
         if (state.vehicles.length > 0) {
           const errorMessage = action.payload as string;
           logger.warn('Failed to fetch addons', { errorMessage });
