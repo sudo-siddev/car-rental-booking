@@ -1,0 +1,151 @@
+.section {
+  margin-bottom: 2rem;
+  animation: fadeInUp 0.5s ease-out 0.2s both;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.sectionTitle {
+  background: linear-gradient(to right, var(--secondary-color), var(--primary-color), var(--accent-teal));
+  color: white;
+  padding: 1rem 1.25rem;
+  margin: 0 0 1rem 0;
+  border-radius: 8px 8px 0 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.2);
+  transition: box-shadow 0.3s ease;
+}
+
+.sectionTitle:hover {
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+}
+
+.message {
+  padding: 2rem;
+  text-align: center;
+  color: var(--text-secondary);
+  font-style: italic;
+  animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.addonsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  padding: 1.25rem;
+}
+
+.addonCard {
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+  padding: 1.125rem;
+  border: 1px solid var(--accent-blue-200);
+  border-radius: 10px;
+  background: white;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.addonCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.addonCard:hover::before {
+  opacity: 1;
+}
+
+.addonCard:hover {
+  border-color: var(--accent-cyan-300);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+}
+
+.addonCard:active {
+  transform: translateY(-1px);
+  transition: transform 0.1s ease;
+}
+
+.addonCard.selected {
+  border-color: var(--primary-color);
+  background: white;
+  box-shadow: 0 4px 12px rgba(6, 182, 212, 0.2);
+  transform: translateY(-1px);
+}
+
+.addonCard.selected::before {
+  opacity: 1;
+}
+
+.checkbox {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  accent-color: var(--primary-color);
+  transition: transform 0.2s ease;
+  position: relative;
+  z-index: 1;
+}
+
+.addonCard.selected .checkbox {
+  accent-color: var(--primary-color);
+}
+
+.addonCard:hover .checkbox {
+  transform: scale(1.1);
+}
+
+.addonName {
+  font-weight: 500;
+  color: var(--text-color);
+  flex: 1;
+  position: relative;
+  z-index: 1;
+  transition: color 0.3s ease;
+}
+
+.addonCard:hover .addonName {
+  color: var(--accent-cyan-600);
+}
+
+.addonCard.selected .addonName {
+  color: var(--accent-cyan-600);
+  font-weight: 600;
+}
+
+@media (max-width: 768px) {
+  .addonsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+

@@ -1,0 +1,54 @@
+{
+  "title": "कार किराया बुकिंग",
+  "selectVehicle": "वाहन प्रकार चुनें",
+  "rentalDuration": "किराया अवधि",
+  "pickupDate": "पिक-अप तिथि",
+  "dropoffDate": "ड्रॉप-ऑफ तिथि",
+  "selectAddons": "एड-ऑन चुनें",
+  "selectVehicleFirst": "कृपया पहले एक वाहन प्रकार चुनें",
+  "bookingSummary": "बुकिंग सारांश",
+  "vehicle": "वाहन",
+  "duration": "अवधि",
+  "days": "दिन",
+  "baseCost": "आधार लागत",
+  "addons": "एड-ऑन",
+  "subtotal": "उप-योग",
+  "gst": "जीएसटी (18%)",
+  "totalAmount": "कुल राशि",
+  "bookNow": "अभी बुक करें",
+  "confirmation": {
+    "title": "बुकिंग पुष्टि हुई!",
+    "message": "आपकी कार किराया बुकिंग सफलतापूर्वक पुष्टि की गई है।",
+    "bookingDetails": "बुकिंग विवरण",
+    "close": "बंद करें"
+  },
+  "loading": "लोड हो रहा है...",
+  "error": "त्रुटि",
+  "retry": "पुनः प्रयास करें",
+  "language": "भाषा",
+  "validation": {
+    "pastDate": "कृपया आज या उसके बाद की तिथि चुनें",
+    "invalidPickupDate": "पिक-अप तिथि अतीत में नहीं हो सकती",
+    "invalidDropoffDate": "ड्रॉप-ऑफ तिथि पिक-अप तिथि के बाद होनी चाहिए",
+    "sameDate": "ड्रॉप-ऑफ तिथि पिक-अप तिथि से कम से कम 1 दिन बाद होनी चाहिए"
+  },
+  "vehicles": {
+    "Sedan": "सेडान",
+    "SUV": "एसयूवी",
+    "Luxury": "लक्जरी",
+    "Van": "वैन"
+  },
+  "addons": {
+    "GPS Navigation": "जीपीएस नेविगेशन",
+    "Child Seat": "चाइल्ड सीट",
+    "WiFi Hotspot": "वाई-फाई हॉटस्पॉट",
+    "Driver Service": "ड्राइवर सेवा",
+    "Insurance": "बीमा",
+    "Roadside Assistance": "रोडसाइड सहायता",
+    "Premium Insurance": "प्रीमियम बीमा",
+    "Concierge Service": "कॉन्सिएर्ज सेवा",
+    "Chauffeur Service": "चौफ़र सेवा",
+    "Premium Sound System": "प्रीमियम साउंड सिस्टम"
+  }
+}
+

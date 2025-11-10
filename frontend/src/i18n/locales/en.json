@@ -1,0 +1,54 @@
+{
+  "title": "Car Rental Booking",
+  "selectVehicle": "Select Vehicle Type",
+  "rentalDuration": "Rental Duration",
+  "pickupDate": "Pick-up Date",
+  "dropoffDate": "Drop-off Date",
+  "selectAddons": "Select Add-ons",
+  "selectVehicleFirst": "Please select a vehicle type first",
+  "bookingSummary": "Booking Summary",
+  "vehicle": "Vehicle",
+  "duration": "Duration",
+  "days": "days",
+  "baseCost": "Base Cost",
+  "addons": "Add-ons",
+  "subtotal": "Subtotal",
+  "gst": "GST (18%)",
+  "totalAmount": "Total Amount",
+  "bookNow": "Book Now",
+  "confirmation": {
+    "title": "Booking Confirmed!",
+    "message": "Your car rental booking has been confirmed successfully.",
+    "bookingDetails": "Booking Details",
+    "close": "Close"
+  },
+  "loading": "Loading...",
+  "error": "Error",
+  "retry": "Retry",
+  "language": "Language",
+  "validation": {
+    "pastDate": "Please select a date from today onwards",
+    "invalidPickupDate": "Pick-up date cannot be in the past",
+    "invalidDropoffDate": "Drop-off date must be after pick-up date",
+    "sameDate": "Drop-off date must be at least 1 day after pick-up date"
+  },
+  "vehicles": {
+    "Sedan": "Sedan",
+    "SUV": "SUV",
+    "Luxury": "Luxury",
+    "Van": "Van"
+  },
+  "addons": {
+    "GPS Navigation": "GPS Navigation",
+    "Child Seat": "Child Seat",
+    "WiFi Hotspot": "WiFi Hotspot",
+    "Driver Service": "Driver Service",
+    "Insurance": "Insurance",
+    "Roadside Assistance": "Roadside Assistance",
+    "Premium Insurance": "Premium Insurance",
+    "Concierge Service": "Concierge Service",
+    "Chauffeur Service": "Chauffeur Service",
+    "Premium Sound System": "Premium Sound System"
+  }
+}
+

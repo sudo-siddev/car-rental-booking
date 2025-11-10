@@ -1,0 +1,122 @@
+.section {
+  margin-bottom: 2rem;
+  animation: fadeInUp 0.5s ease-out 0.1s both;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.sectionTitle {
+  background: linear-gradient(to right, var(--secondary-color), var(--primary-color), var(--accent-teal));
+  color: white;
+  padding: 1rem 1.25rem;
+  margin: 0 0 1rem 0;
+  border-radius: 8px 8px 0 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.2);
+  transition: box-shadow 0.3s ease;
+}
+
+.sectionTitle:hover {
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+}
+
+.dateContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  padding: 1.25rem;
+}
+
+.dateField {
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+}
+
+.label {
+  font-weight: 500;
+  color: var(--text-color);
+  font-size: 0.95rem;
+  transition: color 0.2s ease;
+}
+
+.dateInput {
+  padding: 0.875rem;
+  border: 1px solid var(--accent-blue-200);
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: inherit;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  background: white;
+  color: var(--text-color);
+}
+
+.dateInput::placeholder {
+  color: var(--gray-400);
+}
+
+.dateInput:hover:not(:disabled) {
+  border-color: #bbb;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.dateInput:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 2px var(--accent-cyan-200);
+  transform: translateY(-1px);
+}
+
+.dateInput:disabled {
+  background-color: #f8f8f8;
+  cursor: not-allowed;
+  opacity: 0.5;
+  border-color: #e0e0e0;
+}
+
+.dateInput.error {
+  border-color: #dc3545;
+  background-color: #fff5f5;
+}
+
+.dateInput.error:focus {
+  border-color: #dc3545;
+  box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.1);
+}
+
+.errorMessage {
+  color: #dc3545;
+  font-size: 0.875rem;
+  margin-top: 0.375rem;
+  display: block;
+  animation: fadeIn 0.2s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .dateContainer {
+    grid-template-columns: 1fr;
+  }
+}
+

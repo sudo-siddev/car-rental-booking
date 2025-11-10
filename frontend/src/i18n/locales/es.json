@@ -1,0 +1,54 @@
+{
+  "title": "Reserva de Alquiler de Coches",
+  "selectVehicle": "Seleccionar Tipo de Vehículo",
+  "rentalDuration": "Duración del Alquiler",
+  "pickupDate": "Fecha de Recogida",
+  "dropoffDate": "Fecha de Devolución",
+  "selectAddons": "Seleccionar Complementos",
+  "selectVehicleFirst": "Por favor, seleccione primero un tipo de vehículo",
+  "bookingSummary": "Resumen de la Reserva",
+  "vehicle": "Vehículo",
+  "duration": "Duración",
+  "days": "días",
+  "baseCost": "Costo Base",
+  "addons": "Complementos",
+  "subtotal": "Subtotal",
+  "gst": "IVA (18%)",
+  "totalAmount": "Importe Total",
+  "bookNow": "Reservar Ahora",
+  "confirmation": {
+    "title": "¡Reserva Confirmada!",
+    "message": "Su reserva de alquiler de coche ha sido confirmada exitosamente.",
+    "bookingDetails": "Detalles de la Reserva",
+    "close": "Cerrar"
+  },
+  "loading": "Cargando...",
+  "error": "Error",
+  "retry": "Reintentar",
+  "language": "Idioma",
+  "validation": {
+    "pastDate": "Por favor, seleccione una fecha a partir de hoy",
+    "invalidPickupDate": "La fecha de recogida no puede ser en el pasado",
+    "invalidDropoffDate": "La fecha de devolución debe ser posterior a la fecha de recogida",
+    "sameDate": "La fecha de devolución debe ser al menos 1 día después de la fecha de recogida"
+  },
+  "vehicles": {
+    "Sedan": "Sedán",
+    "SUV": "SUV",
+    "Luxury": "Lujo",
+    "Van": "Furgoneta"
+  },
+  "addons": {
+    "GPS Navigation": "Navegación GPS",
+    "Child Seat": "Asiento para Niños",
+    "WiFi Hotspot": "Punto de Acceso WiFi",
+    "Driver Service": "Servicio de Conductor",
+    "Insurance": "Seguro",
+    "Roadside Assistance": "Asistencia en Carretera",
+    "Premium Insurance": "Seguro Premium",
+    "Concierge Service": "Servicio de Conserjería",
+    "Chauffeur Service": "Servicio de Chófer",
+    "Premium Sound System": "Sistema de Sonido Premium"
+  }
+}
+

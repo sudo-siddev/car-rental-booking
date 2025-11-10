@@ -1,0 +1,78 @@
+/* Import utility classes - must be at the top */
+@import './styles/utilities.css';
+
+/* CSS Reset */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* CSS Variables - Vibrant Ocean Palette */
+:root {
+  --primary-color: #06b6d4; /* cyan-500 */
+  --secondary-color: #2563eb; /* blue-600 */
+  --accent-teal: #2dd4bf; /* teal-400 */
+  --accent-cyan-600: #0891b2; /* cyan-600 */
+  --accent-blue-700: #1d4ed8; /* blue-700 */
+  --accent-cyan-300: #67e8f9; /* cyan-300 */
+  --accent-blue-200: #bfdbfe; /* blue-200 */
+  --accent-cyan-200: #a5f3fc; /* cyan-200 */
+  --accent-blue-900: #1e3a8a; /* blue-900 */
+  --text-color: #333;
+  --text-secondary: #666;
+  --border-color: #bfdbfe; /* blue-200 */
+  --background-color: #eff6ff; /* blue-50 */
+  --background-cyan: #ecfeff; /* cyan-50 */
+  --white: #ffffff;
+  --gray-300: #d1d5db;
+  --gray-400: #9ca3af;
+  --gray-500: #6b7280;
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  line-height: 1.6;
+  color: var(--text-color);
+  background: linear-gradient(to bottom right, var(--background-color), var(--background-cyan));
+  overflow-x: hidden;
+}
+
+#root {
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Accessibility */
+button:focus-visible,
+input:focus-visible {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+}
+
+/* Remove default button styles */
+button {
+  font-family: inherit;
+}
+
+/* Remove default input styles */
+input {
+  font-family: inherit;
+}
+
+/* Responsive images */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
